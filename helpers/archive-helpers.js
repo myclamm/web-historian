@@ -24,14 +24,24 @@ exports.initialize = function(pathsObj){
 
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
+exports.returnWebsite = function(url){
+  var thePath = '/Users/HR10/Code/MichaelLam/2014-07-web-historian/archives/sites/'
+  thePath+=url;
+  return fs.readFileSync(thePath,'utf-8');
+}
 
 exports.readListOfUrls = function(){
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(url1,localurl){
+  return  url1.indexOf(localurl.slice(1))!==-1
 };
 
-exports.addUrlToList = function(){
+exports.addUrlToList = function(url1,localurl){
+  var newfile = url1;
+  console.log('url1',url1);
+  newfile += localurl.slice(1) + "\n"
+  fs.writeFileSync(exports.paths.list, newfile);
 };
 
 exports.isURLArchived = function(){
